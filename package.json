@@ -7,8 +7,8 @@
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
-    "db:dev:rm": "docker compose rm cms -s -f -v",
-    "db:dev:up": "docker compose up cms -d",
+    "db:dev:rm": "docker compose rm dev-db -s -f -v",
+    "db:dev:up": "docker compose up dev-db -d",
     "db:dev:restart": "yarn db:dev:rm && yarn db:dev:up"
   },
   "private": true,
@@ -60,6 +60,7 @@
     "eslint-plugin-react": "7.30.1",
     "eslint-plugin-react-hooks": "4.6.0",
     "jest": "27.5.1",
+    "nestjs-prisma": "^0.16.0",
     "nx": "14.4.2",
     "prettier": "^2.6.2",
     "react-test-renderer": "18.2.0",
