@@ -9,3 +9,80 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updateAt  DateTime @updatedAt
+
+  email      String       @unique
+  password   String
+  avatar     String
+  UserOnRoom UserOnRoom[]
+  taskForMe  Task[]       @relation(name: "forUser")
+  taskFromMe Task[]       @relation(name: "fromUser")
+  Comment    Comment[]
+}
+
+model Room {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updateAt  DateTime @updatedAt
+
+  title      String
+  UserOnRoom UserOnRoom[]
+  Task       Task[]
+  Status     Status[]
+}
+
+model UserOnRoom {
+  id Int @id @default(autoincrement())
+
+  room   Room @relation(fields: [roomId], references: [id])
+  user   User @relation(fields: [userId], references: [id])
+  roomId Int
+  userId Int
+  role   Role
+}
+
+model Task {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updateAt  DateTime @updatedAt
+
+  title      String
+  fromUser   User      @relation(fields: [fromUserId], references: [id], name: "fromUser")
+  fromUserId Int
+  forUser    User      @relation(fields: [forUserId], references: [id], name: "forUser")
+  forUserId  Int
+  room       Room      @relation(fields: [roomId], references: [id])
+  roomId     Int
+  status     Status    @relation(fields: [statusId], references: [id])
+  statusId   Int
+  Comment    Comment[]
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updateAt  DateTime @updatedAt
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId Int
+  task   Task   @relation(fields: [taskId], references: [id])
+  taskId Int
+  text   String
+}
+
+model Status {
+  id Int @id @default(autoincrement())
+
+  room   Room   @relation(fields: [roomId], references: [id])
+  roomId Int
+  title  String
+  Task   Task[]
+}
+
+enum Role {
+  ADMIN
+}

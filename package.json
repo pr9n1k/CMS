@@ -6,7 +6,10 @@
     "run:all": "nx run-many --target=serve --all=true",
     "start": "nx serve",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx test",
+    "db:dev:rm": "docker compose rm cms -s -f -v",
+    "db:dev:up": "docker compose up cms -d",
+    "db:dev:restart": "yarn db:dev:rm && yarn db:dev:up"
   },
   "private": true,
   "dependencies": {
