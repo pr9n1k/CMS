@@ -84,5 +84,8 @@ model Status {
 }
 
 enum Role {
+  OWNER
   ADMIN
+  USER
+  OBSERVE
 }
