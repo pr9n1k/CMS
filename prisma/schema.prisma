@@ -17,7 +17,8 @@ model User {
 
   email      String       @unique
   password   String
-  avatar     String
+  alias      String       @unique
+  avatar     String?
   UserOnRoom UserOnRoom[]
   taskForMe  Task[]       @relation(name: "forUser")
   taskFromMe Task[]       @relation(name: "fromUser")

@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "npmScope": "test",
+  "npmScope": "cms",
   "affected": {
     "defaultBase": "master"
   },
@@ -16,7 +16,7 @@
       "runner": "@nrwl/nx-cloud",
       "options": {
         "cacheableOperations": ["build", "lint", "test", "e2e"],
-        "accessToken": "YzFhYzUzN2ItODE3Ni00MzM3LWE3MWUtZDA5NjdjZjc4YzAwfHJlYWQtd3JpdGU="
+        "accessToken": "NDljNDg3MGEtMzI5MS00N2JkLWFkYmYtZmYxNWNhZmYyYjFifHJlYWQtd3JpdGU="
       }
     }
   },
