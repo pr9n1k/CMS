@@ -8,8 +8,12 @@ import {
   Post,
   Put,
   Query,
+  UseGuards,
 } from '@nestjs/common';
+import { JwtGuard } from '../auth/guard';
 import { UserService } from './user.service';
+
+@UseGuards(JwtGuard)
 @Controller('user')
 export class UserController {
   constructor(private service: UserService) {}
